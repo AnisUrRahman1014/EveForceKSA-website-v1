@@ -1,0 +1,107 @@
+.signup-form {
+  width: 100%;
+  max-width: 620px;
+}
+
+.signup-form__title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #101828;
+  margin: 0 0 8px;
+}
+
+.signup-form__subtitle {
+  font-size: 15px;
+  color: #667085;
+  margin: 0 0 32px;
+}
+
+.signup-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.signup-form__field {
+  min-width: 0;
+}
+
+.signup-form__icon {
+  color: #98a2b3;
+}
+
+.signup-form__submit {
+  height: 48px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.signup-form__divider {
+  font-size: 13px;
+  color: #98a2b3;
+}
+
+.signup-form__social {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.signup-form__social .ant-btn {
+  height: 46px;
+  font-weight: 500;
+}
+
+.signup-form__footer {
+  text-align: center;
+  font-size: 13px;
+  color: #98a2b3;
+  margin-top: 28px;
+}
+
+.signin-form__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -8px 0 20px;
+}
+
+.signin-form__forgot {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signin-form__forgot:hover {
+  text-decoration: underline;
+}
+
+.signin-form__submit {
+  margin-top: 0;
+}
+
+.signin-form__signup-link {
+  text-align: center;
+  font-size: 14px;
+  color: #475467;
+  margin-top: 24px;
+}
+
+.signin-form__signup-link a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-form__signup-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .signup-form__row,
+  .signup-form__social {
+    grid-template-columns: 1fr;
+  }
+}
