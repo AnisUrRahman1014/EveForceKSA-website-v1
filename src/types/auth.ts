@@ -2,7 +2,7 @@ export interface CreateOrganizerAccountPayload {
   firstName: string;
   lastName: string;
   email: string;
-  organizationEmail: string;
+  organizationName: string;
   password: string;
   companyOrigin: string;
 }

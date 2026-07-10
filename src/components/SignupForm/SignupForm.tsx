@@ -227,7 +227,7 @@ const SignupForm = () => {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        organizationEmail: values.organizationEmail,
+        organizationName: values.organizationName,
         password: values.password,
         companyOrigin: values.companyOrigin,
       });
@@ -308,19 +308,18 @@ const SignupForm = () => {
         </Form.Item>
 
         <Form.Item
-          name="organizationEmail"
-          label="Organization Email"
+          name="organizationName"
+          label="Organization Name"
           rules={[
-            { required: true, message: "Please enter your organization email" },
-            { type: "email", message: "Enter a valid email address" },
+            { required: true, message: "Please enter your organization name" },
           ]}
-          extra="Use company email to help us verify your organization"
+          extra="Enter the legal or commonly used name of your organization"
         >
           <Input
             size="large"
-            prefix={<MailOutlined className="signup-form__icon" />}
-            placeholder="Enter your organization email"
-            autoComplete="off"
+            prefix={<UserOutlined className="signup-form__icon" />}
+            placeholder="Enter your organization name"
+            autoComplete="organization"
           />
         </Form.Item>
 

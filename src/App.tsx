@@ -7,7 +7,7 @@ const theme = {
     colorPrimary: "#2563eb",
     borderRadius: 8,
     fontFamily:
-      "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   },
 };
 
