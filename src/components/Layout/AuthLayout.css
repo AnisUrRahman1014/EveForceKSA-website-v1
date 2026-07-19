@@ -1,5 +1,7 @@
+/* ─── AuthLayout (grid shell) ──────────────────────── */
+
 .auth-layout {
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: minmax(340px, 32%) 1fr;
   background: #f5f6f8;
@@ -127,6 +129,7 @@
   padding: 48px 56px;
   display: flex;
   justify-content: center;
+  overflow-y: auto;
 }
 
 @media (max-width: 960px) {

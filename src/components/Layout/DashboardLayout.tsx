@@ -10,12 +10,12 @@ import {
   BarChartOutlined,
   UserOutlined,
   SettingOutlined,
-  SafetyCertificateFilled,
 } from "@ant-design/icons";
 import { Badge } from "antd";
-import logo from "../../assets/logo.png";
+import dashboardLogo from "../../assets/DashboardLogo.svg";
 import "./DashboardLayout.css";
-
+import mldLogo from "../../assets/MLD.svg";
+import verifyIcon from "../../assets/Verified.svg";
 interface DashboardLayoutProps {
   children: ReactNode;
 }
@@ -26,7 +26,12 @@ const mainNav = [
 
 const operationsNav = [
   { to: "/my-listings", label: "My Listings", icon: <CalendarOutlined /> },
-  { to: "/applications", label: "Applications", icon: <FileTextOutlined />, badge: 8 },
+  {
+    to: "/applications",
+    label: "Applications",
+    icon: <FileTextOutlined />,
+    badge: 8,
+  },
   { to: "/messages", label: "Messages", icon: <MailOutlined /> },
   { to: "/payments", label: "Payments", icon: <CreditCardOutlined /> },
   { to: "/analytics", label: "Analytics", icon: <BarChartOutlined /> },
@@ -49,7 +54,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             className="dashboard-sidebar__logo"
             onClick={() => navigate("/dashboard")}
           >
-            <img src={logo} alt="EveForce" height={22} />
+            <img
+              src={dashboardLogo}
+              alt="EveForce"
+              className="dashboard-sidebar__logo-image"
+            />
           </button>
 
           <nav className="dashboard-sidebar__nav">
@@ -60,19 +69,26 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
+                      `dashboard-sidebar__link${
+                        isActive ? " dashboard-sidebar__link--active" : ""
+                      }`
                     }
                   >
-                    <span className="dashboard-sidebar__icon">{item.icon}</span>
+                    <span className="dashboard-sidebar__icon">
+                      {item.icon}
+                    </span>
                     {item.label}
                   </NavLink>
                 </li>
               ))}
+
               <li>
                 <NavLink
                   to="/events/create/details"
                   className={({ isActive }) =>
-                    `dashboard-sidebar__cta${isActive ? " dashboard-sidebar__cta--active" : ""}`
+                    `dashboard-sidebar__cta${
+                      isActive ? " dashboard-sidebar__cta--active" : ""
+                    }`
                   }
                 >
                   <PlusOutlined /> Create New Event
@@ -87,13 +103,25 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
+                      `dashboard-sidebar__link${
+                        isActive ? " dashboard-sidebar__link--active" : ""
+                      }`
                     }
                   >
-                    <span className="dashboard-sidebar__icon">{item.icon}</span>
-                    <span className="dashboard-sidebar__link-label">{item.label}</span>
+                    <span className="dashboard-sidebar__icon">
+                      {item.icon}
+                    </span>
+
+                    <span className="dashboard-sidebar__link-label">
+                      {item.label}
+                    </span>
+
                     {item.badge ? (
-                      <Badge count={item.badge} size="small" color="#2563eb" />
+                      <Badge
+                        count={item.badge}
+                        size="small"
+                        color="#2563eb"
+                      />
                     ) : null}
                   </NavLink>
                 </li>
@@ -107,10 +135,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
+                      `dashboard-sidebar__link${
+                        isActive ? " dashboard-sidebar__link--active" : ""
+                      }`
                     }
                   >
-                    <span className="dashboard-sidebar__icon">{item.icon}</span>
+                    <span className="dashboard-sidebar__icon">
+                      {item.icon}
+                    </span>
                     {item.label}
                   </NavLink>
                 </li>
@@ -119,15 +151,30 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </nav>
         </div>
 
-        <div className="dashboard-sidebar__org">
-          <span className="dashboard-sidebar__org-avatar">
-            <SafetyCertificateFilled />
-          </span>
-          <div>
-            <p className="dashboard-sidebar__org-name">MDLBEAST</p>
-            <p className="dashboard-sidebar__org-sub">MDLBeast Events</p>
-          </div>
-        </div>
+<div className="dashboard-sidebar__org">
+  <img
+    src={mldLogo}
+    alt="MDLBEAST"
+    className="dashboard-sidebar__org-logo"
+  />
+
+  <div className="dashboard-sidebar__org-content">
+    <div className="dashboard-sidebar__org-header">
+      <h4 className="dashboard-sidebar__org-name">
+        MDLBEAST
+        <img
+          src={verifyIcon}
+          alt="Verified"
+          className="dashboard-sidebar__verify"
+        />
+      </h4>
+    </div>
+
+    <p className="dashboard-sidebar__org-sub">
+      MDLBeast Events
+    </p>
+  </div>
+</div>
       </aside>
 
       <main className="dashboard-content">{children}</main>

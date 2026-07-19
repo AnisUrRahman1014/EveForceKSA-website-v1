@@ -5,7 +5,7 @@ import {
   TeamOutlined,
   QrcodeOutlined,
 } from "@ant-design/icons";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 import heroCrowd from "../../assets/images/hero-crowd.jpg";
 import "./AuthLayout.css";
 
