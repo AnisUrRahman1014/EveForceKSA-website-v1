@@ -1,0 +1,647 @@
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #101828;
+}
+
+.page-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 15px;
+}
+
+.hero-banner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(120deg, #050b24 0%, #0c1848 55%, #14225e 100%);
+  padding: 32px 36px;
+  color: #fff;
+  margin-bottom: 32px;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 11, 36, 0.92) 0%, rgba(5, 11, 36, 0.55) 60%, rgba(5, 11, 36, 0.85) 100%);
+}
+
+.hero-banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.hero-banner__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-banner__title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.hero-banner__subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #93c5fd;
+  margin: 0 0 12px;
+}
+
+.hero-banner__desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d0d5dd;
+  margin: 0 0 24px;
+  max-width: 560px;
+}
+
+.hero-banner__features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.hero-banner__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #e4e7ec;
+}
+
+.hero-banner__feature .anticon {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.form-card {
+  background: #fff;
+  border: 1px solid #eef0f3;
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+.form-card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #101828;
+}
+
+.form-card > p.form-card__desc {
+  margin: 0 0 22px;
+  color: #667085;
+  font-size: 13.5px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #344054;
+  margin: 0 0 6px;
+}
+
+.form-hint {
+  font-size: 12.5px;
+  color: #98a2b3;
+  margin: 0;
+}
+
+.form-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #101828;
+  margin: 0 0 14px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.perk-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.perk-chip {
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  color: #344054;
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.perk-chip--active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.wizard-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Role Builder */
+.role-builder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.role-card {
+  border: 1px solid #eef0f3;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.role-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.role-card__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.role-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  color: #101828;
+}
+
+.role-card__subtitle {
+  font-size: 12px;
+  color: #98a2b3;
+  margin: 0;
+}
+
+.role-card__more {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #667085;
+  font-size: 16px;
+}
+
+.role-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: #475467;
+  padding: 6px 0;
+}
+
+.role-card__row-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-card__row-value {
+  font-weight: 600;
+  color: #101828;
+}
+
+.add-role-btn {
+  border: 1.5px dashed #2563eb;
+  background: #fff;
+  color: #2563eb;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Stepper input (used in Add Role drawer) */
+.stepper-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 44px;
+}
+
+.stepper-input button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: #f9fafb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #344054;
+  flex-shrink: 0;
+}
+
+.stepper-input button:hover {
+  background: #eef0f3;
+}
+
+.stepper-input span {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.schedule-days {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.schedule-day {
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.schedule-day--active {
+  border-color: #2563eb;
+  border-width: 2px;
+  background: #eff4ff;
+}
+
+.schedule-day__label {
+  font-size: 12.5px;
+  color: #667085;
+}
+
+.schedule-day__date {
+  font-size: 20px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.schedule-day__month {
+  font-size: 12px;
+  color: #667085;
+}
+
+.requirement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #eef0f3;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fafbfc;
+}
+
+.requirement-item__handle {
+  color: #98a2b3;
+  margin-top: 3px;
+  cursor: grab;
+}
+
+.requirement-item__body {
+  flex: 1;
+}
+
+.requirement-item__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #101828;
+}
+
+.requirement-item__desc {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: #667085;
+}
+
+.requirement-item__more {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #667085;
+  padding: 2px;
+}
+
+/* Review Listing */
+.review-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-table__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid #f2f4f7;
+  font-size: 14px;
+}
+
+.review-table__row:last-child {
+  border-bottom: none;
+}
+
+.review-table__label {
+  color: #667085;
+}
+
+.review-table__value {
+  color: #101828;
+  font-weight: 600;
+  text-align: right;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.section-head button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #667085;
+  font-size: 16px;
+}
+
+.tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 40px;
+}
+
+.tag-grid__item {
+  font-size: 14px;
+  color: #344054;
+  min-width: 200px;
+}
+
+.perk-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.perk-pill {
+  border: 1px solid #93c5fd;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+/* Payment */
+.payroll-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.payroll-row:last-child {
+  border-bottom: none;
+}
+
+.payroll-row__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: #101828;
+}
+
+.payroll-row__sub {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  color: #98a2b3;
+}
+
+.payroll-row__amount {
+  font-weight: 700;
+  font-size: 15px;
+  color: #101828;
+}
+
+.hiring-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.hiring-card {
+  border: 1.5px solid #eef0f3;
+  border-radius: 14px;
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.hiring-card--active {
+  border-color: #2563eb;
+  background: #f8faff;
+}
+
+.hiring-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: #667085;
+  margin-bottom: 12px;
+}
+
+.hiring-card__check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #d0d5dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  font-size: 12px;
+}
+
+.hiring-card__check--active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.hiring-card__body {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.hiring-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eef4ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.hiring-card__body h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.hiring-card__body p {
+  margin: 0;
+  font-size: 13px;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.hiring-card__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  border-top: 1px solid #f2f4f7;
+  padding-top: 14px;
+}
+
+.hiring-card__feature-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #344054;
+  margin: 0 0 2px;
+}
+
+.hiring-card__feature-desc {
+  font-size: 11.5px;
+  color: #98a2b3;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.total-payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 14.5px;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.total-payment-row:last-child {
+  border-bottom: none;
+}
+
+.total-payment-row--grand {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.info-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1100px) {
+  .form-row,
+  .checkbox-grid,
+  .perk-grid,
+  .hero-banner__features,
+  .perk-pill-grid,
+  .hiring-mode-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
