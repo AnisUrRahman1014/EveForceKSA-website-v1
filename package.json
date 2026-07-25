@@ -14,11 +14,9 @@
     "antd": "^6.5.0",
     "axios": "^1.18.1",
     "dayjs": "^1.11.13",
-    "i18next": "^26.3.6",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-helmet-async": "^3.0.0",
-    "react-i18next": "^17.0.11",
     "react-router-dom": "^7.18.1"
   },
   "devDependencies": {

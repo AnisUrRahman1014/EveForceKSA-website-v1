@@ -1,10 +1,6 @@
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import CreateOrganizerAccount from "../pages/CreateOrganizerAccount";
 import SignIn from "../pages/SignIn";
-import ForgotPassword from "../pages/ForgotPassword";
-import Terms from "../pages/Terms";
-import Privacy from "../pages/Privacy";
 import Dashboard from "../pages/Dashboard";
 import PlaceholderPage from "../pages/PlaceholderPage";
 import EventDetails from "../pages/CreateEvent/EventDetails";
@@ -22,16 +18,11 @@ const CreateEventWizard = () => (
 );
 
 const AppRoutes = () => {
-  const { t } = useTranslation();
-
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/signup/organizer" replace />} />
       <Route path="/signup/organizer" element={<CreateOrganizerAccount />} />
       <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/terms" element={<Terms />} />
-      <Route path="/privacy" element={<Privacy />} />
 
       <Route path="/dashboard" element={<Dashboard />} />
 
@@ -44,31 +35,31 @@ const AppRoutes = () => {
 
       <Route
         path="/my-listings"
-        element={<PlaceholderPage title={t("sidebar.myListings")} description={t("placeholders.myListingsDesc") ?? undefined} />}
+        element={<PlaceholderPage title="My Listings" description="All your published and draft event listings." />}
       />
       <Route
         path="/applications"
-        element={<PlaceholderPage title={t("sidebar.applications")} description={t("placeholders.applicationsDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Applications" description="Review freelancer applications across your events." />}
       />
       <Route
         path="/messages"
-        element={<PlaceholderPage title={t("sidebar.messages")} description={t("placeholders.messagesDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Messages" description="Chat with freelancers and your on-site coordinator." />}
       />
       <Route
         path="/payments"
-        element={<PlaceholderPage title={t("sidebar.payments")} description={t("placeholders.paymentsDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Payments" description="Track escrow payments and payout history." />}
       />
       <Route
         path="/analytics"
-        element={<PlaceholderPage title={t("sidebar.analytics")} description={t("placeholders.analyticsDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Analytics" description="Insights across your events and workforce spend." />}
       />
       <Route
         path="/profile"
-        element={<PlaceholderPage title={t("sidebar.profile")} description={t("placeholders.profileDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Profile" description="Manage your organizer profile." />}
       />
       <Route
         path="/settings"
-        element={<PlaceholderPage title={t("sidebar.settings")} description={t("placeholders.settingsDesc") ?? undefined} />}
+        element={<PlaceholderPage title="Settings" description="Manage account and notification preferences." />}
       />
 
       <Route path="*" element={<Navigate to="/signup/organizer" replace />} />

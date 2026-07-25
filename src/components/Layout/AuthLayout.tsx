@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import {
   CalendarOutlined,
   TeamOutlined,
@@ -8,7 +7,6 @@ import {
 } from "@ant-design/icons";
 import logo from "../../assets/logo.svg";
 import heroCrowd from "../../assets/images/hero-crowd.jpg";
-import LanguageSwitcher from "../common/LanguageSwitcher";
 import "./AuthLayout.css";
 
 interface AuthLayoutProps {
@@ -17,27 +15,32 @@ interface AuthLayoutProps {
   footerLink?: ReactNode;
 }
 
-const AuthLayout = ({ children, subtitle, footerLink }: AuthLayoutProps) => {
-  const { t } = useTranslation();
+const features = [
+  {
+    icon: <CalendarOutlined />,
+    title: "Post & manage Events",
+    description: "Publish events and manage staffing requirements effortlessly.",
+  },
+  {
+    icon: <TeamOutlined />,
+    title: "Hire Trusted Freelancers",
+    description: "Browse verified professionals and build your event workforce.",
+  },
+  {
+    icon: <QrcodeOutlined />,
+    title: "Attendance & Payroll",
+    description: "Track attendance with QR check-ins and release payments securely.",
+  },
+];
 
-  const features = [
-    {
-      icon: <CalendarOutlined />,
-      title: t("authLayout.feature1Title"),
-      description: t("authLayout.feature1Desc"),
-    },
-    {
-      icon: <TeamOutlined />,
-      title: t("authLayout.feature2Title"),
-      description: t("authLayout.feature2Desc"),
-    },
-    {
-      icon: <QrcodeOutlined />,
-      title: t("authLayout.feature3Title"),
-      description: t("authLayout.feature3Desc"),
-    },
-  ];
+const DEFAULT_SUBTITLE =
+  "Join EveForce and connect with thousands of skilled freelancers for your events";
 
+const AuthLayout = ({
+  children,
+  subtitle = DEFAULT_SUBTITLE,
+  footerLink,
+}: AuthLayoutProps) => {
   return (
     <div className="auth-layout">
       <aside className="auth-layout__brand" aria-label="EveForce introduction">
@@ -48,20 +51,17 @@ const AuthLayout = ({ children, subtitle, footerLink }: AuthLayoutProps) => {
           aria-label="Concert crowd under stage lighting"
         />
         <div className="auth-layout__brand-inner">
-          <div className="auth-layout__brand-top">
-            <Link to="/" className="auth-layout__logo">
-              <img src={logo} alt="EveForce logo" height={26} />
-            </Link>
-            <LanguageSwitcher compact />
-          </div>
+          <Link to="/" className="auth-layout__logo">
+            <img src={logo} alt="EveForce logo" height={26} />
+          </Link>
 
           <h1 className="auth-layout__heading">
-            {t("authLayout.headingLine1")}
+            Build Your Event
             <br />
-            {t("authLayout.headingLine2")}
+            Workforce
           </h1>
 
-          <p className="auth-layout__subheading">{subtitle ?? t("authLayout.defaultSubtitle")}</p>
+          <p className="auth-layout__subheading">{subtitle}</p>
 
           <ul className="auth-layout__features">
             {features.map((feature) => (
