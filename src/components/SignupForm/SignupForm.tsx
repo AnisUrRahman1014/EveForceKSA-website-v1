@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Input, Select, Checkbox, Button, message, Divider } from "antd";
+import { useTranslation } from "react-i18next";
 import {
   UserOutlined,
   MailOutlined,
@@ -8,7 +9,7 @@ import {
   GoogleOutlined,
   LinkedinFilled,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createOrganizerAccount } from "../../api/auth";
 import type { CreateOrganizerAccountPayload } from "../../types/auth";
 import "./SignupForm.css";
@@ -216,9 +217,11 @@ const countryOptions = [
 ];
 
 const SignupForm = () => {
+  const { t } = useTranslation();
   const [form] = Form.useForm<FormValues>();
   const [submitting, setSubmitting] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
 
   const handleFinish = async (values: FormValues) => {
     setSubmitting(true);
@@ -231,8 +234,9 @@ const SignupForm = () => {
         password: values.password,
         companyOrigin: values.companyOrigin,
       });
-      messageApi.success("Account created! Check your email to verify.");
+      messageApi.success(t("signup.successMessage") ?? undefined);
       form.resetFields();
+      setTimeout(() => navigate("/sign-in"), 900);
     } catch (error) {
       messageApi.error(
         error instanceof Error ? error.message : "Could not create account."
@@ -246,12 +250,9 @@ const SignupForm = () => {
     <section className="signup-form" aria-labelledby="signup-heading">
       {contextHolder}
       <h1 id="signup-heading" className="signup-form__title">
-        Create Organizer Account
+        {t("signup.title")}
       </h1>
-      <p className="signup-form__subtitle">
-        Create your organization account to start hiring freelancers and
-        managing events.
-      </p>
+      <p className="signup-form__subtitle">{t("signup.subtitle")}</p>
 
       <Form<FormValues>
         form={form}
@@ -263,28 +264,28 @@ const SignupForm = () => {
         <div className="signup-form__row">
           <Form.Item
             name="firstName"
-            label="First name"
-            rules={[{ required: true, message: "Please enter your first name" }]}
+            label={t("signup.firstName")}
+            rules={[{ required: true, message: t("signup.firstNameRequired") ?? undefined }]}
             className="signup-form__field"
           >
             <Input
               size="large"
               prefix={<UserOutlined className="signup-form__icon" />}
-              placeholder="Enter your first name"
+              placeholder={t("signup.firstNamePlaceholder") ?? undefined}
               autoComplete="given-name"
             />
           </Form.Item>
 
           <Form.Item
             name="lastName"
-            label="Last name"
-            rules={[{ required: true, message: "Please enter your last name" }]}
+            label={t("signup.lastName")}
+            rules={[{ required: true, message: t("signup.lastNameRequired") ?? undefined }]}
             className="signup-form__field"
           >
             <Input
               size="large"
               prefix={<UserOutlined className="signup-form__icon" />}
-              placeholder="Enter your last name"
+              placeholder={t("signup.lastNamePlaceholder") ?? undefined}
               autoComplete="family-name"
             />
           </Form.Item>
@@ -292,33 +293,31 @@ const SignupForm = () => {
 
         <Form.Item
           name="email"
-          label="Email"
+          label={t("auth.email")}
           rules={[
-            { required: true, message: "Please enter your email" },
-            { type: "email", message: "Enter a valid email address" },
+            { required: true, message: t("auth.emailRequired") ?? undefined },
+            { type: "email", message: t("auth.emailInvalid") ?? undefined },
           ]}
-          extra="Business email preferred. You can also use your personal email"
+          extra={t("signup.emailExtra")}
         >
           <Input
             size="large"
             prefix={<MailOutlined className="signup-form__icon" />}
-            placeholder="Enter your business email"
+            placeholder={t("auth.emailPlaceholder") ?? undefined}
             autoComplete="email"
           />
         </Form.Item>
 
         <Form.Item
           name="organizationName"
-          label="Organization Name"
-          rules={[
-            { required: true, message: "Please enter your organization name" },
-          ]}
-          extra="Enter the legal or commonly used name of your organization"
+          label={t("signup.organizationName")}
+          rules={[{ required: true, message: t("signup.organizationNameRequired") ?? undefined }]}
+          extra={t("signup.organizationNameExtra")}
         >
           <Input
             size="large"
             prefix={<UserOutlined className="signup-form__icon" />}
-            placeholder="Enter your organization name"
+            placeholder={t("signup.organizationNamePlaceholder") ?? undefined}
             autoComplete="organization"
           />
         </Form.Item>
@@ -326,35 +325,35 @@ const SignupForm = () => {
         <div className="signup-form__row">
           <Form.Item
             name="password"
-            label="Password"
+            label={t("signup.password")}
             rules={[
-              { required: true, message: "Please create a password" },
-              { min: 8, message: "Password should be 8 characters long" },
+              { required: true, message: t("signup.passwordRequired") ?? undefined },
+              { min: 8, message: t("signup.passwordMin") ?? undefined },
             ]}
             className="signup-form__field"
-            extra="Password should be 8 characters long"
+            extra={t("signup.passwordMin")}
           >
             <Input.Password
               size="large"
               prefix={<LockOutlined className="signup-form__icon" />}
-              placeholder="Create password"
+              placeholder={t("signup.passwordPlaceholder") ?? undefined}
               autoComplete="new-password"
             />
           </Form.Item>
 
           <Form.Item
             name="confirmPassword"
-            label="Confirm Password"
+            label={t("signup.confirmPassword")}
             dependencies={["password"]}
             className="signup-form__field"
             rules={[
-              { required: true, message: "Please confirm your password" },
+              { required: true, message: t("signup.confirmPasswordRequired") ?? undefined },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error("Passwords do not match"));
+                  return Promise.reject(new Error(t("signup.passwordMismatch") ?? "Passwords do not match"));
                 },
               }),
             ]}
@@ -362,7 +361,7 @@ const SignupForm = () => {
             <Input.Password
               size="large"
               prefix={<LockOutlined className="signup-form__icon" />}
-              placeholder="Confirm your password"
+              placeholder={t("signup.confirmPasswordPlaceholder") ?? undefined}
               autoComplete="new-password"
             />
           </Form.Item>
@@ -370,12 +369,12 @@ const SignupForm = () => {
 
         <Form.Item
           name="companyOrigin"
-          label="Company Origin"
-          rules={[{ required: true, message: "Please select your company origin" }]}
+          label={t("signup.companyOrigin")}
+          rules={[{ required: true, message: t("signup.companyOriginRequired") ?? undefined }]}
         >
           <Select
             size="large"
-            placeholder="Please Select"
+            placeholder={t("signup.companyOriginPlaceholder") ?? undefined}
             showSearch
             allowClear
             filterOption={(input, option) =>
@@ -394,13 +393,13 @@ const SignupForm = () => {
               validator: (_, value) =>
                 value
                   ? Promise.resolve()
-                  : Promise.reject(new Error("Please accept the terms to continue")),
+                  : Promise.reject(new Error(t("signup.agreeRequired") ?? "Please accept the terms to continue")),
             },
           ]}
         >
           <Checkbox>
-            I agree to the <Link to="/terms">Terms of Service</Link> and{" "}
-            <Link to="/privacy">Privacy Policy</Link>.
+            {t("signup.agreePrefix")} <Link to="/terms">{t("signup.agreeTerms")}</Link>{" "}
+            {t("signup.agreeAnd")} <Link to="/privacy">{t("signup.agreePrivacy")}</Link>.
           </Checkbox>
         </Form.Item>
 
@@ -412,25 +411,22 @@ const SignupForm = () => {
           loading={submitting}
           className="signup-form__submit"
         >
-          Create Account
+          {t("signup.createAccount")}
         </Button>
 
-        <Divider className="signup-form__divider">OR</Divider>
+        <Divider className="signup-form__divider">{t("auth.or")}</Divider>
 
         <div className="signup-form__social">
           <Button size="large" icon={<GoogleOutlined />} block>
-            Continue with Google
+            {t("auth.continueWithGoogle")}
           </Button>
           <Button size="large" icon={<LinkedinFilled style={{ color: "#0A66C2" }} />} block>
-            Continue with Linkedin
+            {t("auth.continueWithLinkedin")}
           </Button>
         </div>
       </Form>
 
-      <p className="signup-form__footer">
-        🔒 Your information is securely encrypted and used only for account
-        verification.
-      </p>
+      <p className="signup-form__footer">{t("signup.secureFooter")}</p>
     </section>
   );
 };

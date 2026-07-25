@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { Button, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import {
@@ -29,8 +30,12 @@ const dayRangeLabel = (days: string[]) => {
   return `${first.month} ${first.date}-${last.month} ${last.date}`;
 };
 
+const isRoleConfigured = (role: EventRole) =>
+  Boolean(role.roleType) && role.staffCount > 0 && role.days.length > 0;
+
 const RolesStaffing = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { roles, addRole, updateRole, removeRole } = useEventForm();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editingRole, setEditingRole] = useState<EventRole | null>(null);
@@ -55,8 +60,8 @@ const RolesStaffing = () => {
   };
 
   const cardMenu = (role: EventRole): MenuProps["items"] => [
-    { key: "edit", label: "Edit", onClick: () => openEditRole(role) },
-    { key: "remove", label: "Remove", danger: true, onClick: () => removeRole(role.id) },
+    { key: "edit", label: t("common.edit"), onClick: () => openEditRole(role) },
+    { key: "remove", label: t("common.remove"), danger: true, onClick: () => removeRole(role.id) },
   ];
 
   const handleContinue = () => {
@@ -66,21 +71,19 @@ const RolesStaffing = () => {
   return (
     <DashboardLayout>
       <Helmet>
-        <title>Roles & Staffing | EveForce</title>
+        <title>{t("rolesStaffing.title")} | EveForce</title>
       </Helmet>
 
       <div className="page-header">
-        <h1>Roles & Staffing</h1>
-        <p>Select your event team and define staffing, schedules, pay rates, and role-specific requirements.</p>
+        <h1>{t("rolesStaffing.title")}</h1>
+        <p>{t("rolesStaffing.subtitle")}</p>
       </div>
 
       <StepIndicator current={2} maxReached={2} />
 
       <div className="form-card">
-        <h2>Role Builder</h2>
-        <p className="form-card__desc">
-          Add and configure roles for your event. Each selected role will generate an individual listing.
-        </p>
+        <h2>{t("rolesStaffing.builderTitle")}</h2>
+        <p className="form-card__desc">{t("rolesStaffing.builderDesc")}</p>
 
         {roles.length > 0 && (
           <div className="role-builder-grid">
@@ -90,8 +93,15 @@ const RolesStaffing = () => {
                   <span className="role-card__icon">{getRoleIcon(role.roleType)}</span>
                   <div>
                     <p className="role-card__title">{role.roleType}</p>
-                    <p className="role-card__subtitle">Role #{idx + 1}</p>
+                    <p className="role-card__subtitle">
+                      {t("rolesStaffing.role")} #{idx + 1}
+                    </p>
                   </div>
+                  <span
+                    className={`role-card__badge${isRoleConfigured(role) ? "" : " role-card__badge--muted"}`}
+                  >
+                    {isRoleConfigured(role) ? t("common.configured") : t("common.notConfigured")}
+                  </span>
                   <Dropdown menu={{ items: cardMenu(role) }} trigger={["click"]}>
                     <button type="button" className="role-card__more">
                       <MoreOutlined />
@@ -100,19 +110,19 @@ const RolesStaffing = () => {
                 </div>
                 <div className="role-card__row">
                   <span className="role-card__row-label">
-                    <TeamOutlined /> No. of Staff
+                    <TeamOutlined /> {t("rolesStaffing.noOfStaff")}
                   </span>
                   <span className="role-card__row-value">{role.staffCount}</span>
                 </div>
                 <div className="role-card__row">
                   <span className="role-card__row-label">
-                    <CalendarOutlined /> Days
+                    <CalendarOutlined /> {t("rolesStaffing.days")}
                   </span>
                   <span className="role-card__row-value">{dayRangeLabel(role.days)}</span>
                 </div>
                 <div className="role-card__row">
                   <span className="role-card__row-label">
-                    <ClockCircleOutlined /> Time
+                    <ClockCircleOutlined /> {t("rolesStaffing.time")}
                   </span>
                   <span className="role-card__row-value">
                     {role.startTime}-{role.endTime}
@@ -120,7 +130,7 @@ const RolesStaffing = () => {
                 </div>
                 <div className="role-card__row">
                   <span className="role-card__row-label">
-                    <CreditCardOutlined /> Rate/day
+                    <CreditCardOutlined /> {t("rolesStaffing.ratePerDay")}
                   </span>
                   <span className="role-card__row-value" style={{ color: "#2563eb" }}>
                     {role.ratePerDay} SAR
@@ -132,17 +142,17 @@ const RolesStaffing = () => {
         )}
 
         <button type="button" className="add-role-btn" onClick={openNewRole}>
-          <PlusOutlined /> {roles.length === 0 ? "Add a new role" : "Add another role"}
+          <PlusOutlined /> {roles.length === 0 ? t("rolesStaffing.addNewRole") : t("rolesStaffing.addAnotherRole")}
         </button>
       </div>
 
       <div className="wizard-footer">
         <Button size="large" onClick={() => navigate("/events/create/details")}>
-          Back
+          {t("common.back")}
         </Button>
-        <Button size="large">Save as Draft</Button>
+        <Button size="large">{t("common.saveAsDraft")}</Button>
         <Button size="large" type="primary" disabled={roles.length === 0} onClick={handleContinue}>
-          Continue
+          {t("common.continue")}
         </Button>
       </div>
 

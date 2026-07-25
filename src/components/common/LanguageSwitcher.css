@@ -1,0 +1,12 @@
+.language-switcher {
+  min-width: 92px;
+}
+
+.language-switcher .ant-select-selector {
+  padding-inline-start: 4px !important;
+}
+
+.language-switcher--compact {
+  min-width: 76px;
+  font-size: 12.5px;
+}

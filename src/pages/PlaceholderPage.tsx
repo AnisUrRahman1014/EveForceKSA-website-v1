@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import DashboardLayout from "../components/Layout/DashboardLayout";
 import "../components/CreateEvent/create-event.css";
 
@@ -11,6 +12,7 @@ interface PlaceholderPageProps {
 
 const PlaceholderPage = ({ title, description }: PlaceholderPageProps) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <DashboardLayout>
@@ -31,9 +33,9 @@ const PlaceholderPage = ({ title, description }: PlaceholderPageProps) => {
           color: "#667085",
         }}
       >
-        <p style={{ marginBottom: 20 }}>This section is coming soon.</p>
+        <p style={{ marginBottom: 20 }}>{t("common.comingSoon")}</p>
         <Button type="primary" onClick={() => navigate("/events/create/details")}>
-          Create New Event
+          {t("common.createNewEvent")}
         </Button>
       </div>
     </DashboardLayout>

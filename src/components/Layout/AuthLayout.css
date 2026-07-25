@@ -8,7 +8,10 @@
 }
 
 .auth-layout__brand {
-  position: relative;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
   background: linear-gradient(160deg, #050b24 0%, #0c1848 55%, #14225e 100%);
   color: #fff;
   padding: 48px 40px;
@@ -43,13 +46,26 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-y: auto;
+}
+
+.auth-layout__brand-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 40px;
 }
 
 .auth-layout__logo {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 40px;
   line-height: 0;
+}
+
+.auth-layout__brand .language-switcher .ant-select-selection-item,
+.auth-layout__brand .language-switcher .ant-select-arrow {
+  color: #fff !important;
 }
 
 .auth-layout__heading {
@@ -138,6 +154,8 @@
   }
 
   .auth-layout__brand {
+    position: static;
+    height: auto;
     padding: 32px 24px;
   }
 

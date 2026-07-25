@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { Input, Select, DatePicker, Checkbox, Button } from "antd";
 import {
   GiftOutlined,
@@ -23,13 +24,15 @@ import {
   LANGUAGE_OPTIONS,
   TIME_OPTIONS,
 } from "../../types/event";
-import heroCrowd from "../../assets/images/hero-crowd.jpg";
+import heroCoordinator from "../../assets/images/hero-coordinator.jpg";
+import mapPin from "../../assets/images/map-pin.png";
 import "../../components/CreateEvent/create-event.css";
 
 const { TextArea } = Input;
 
 const EventDetails = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { details, setDetails } = useEventForm();
 
   const toggleRequirement = (label: string) => {
@@ -52,70 +55,70 @@ const EventDetails = () => {
     navigate("/events/create/roles");
   };
 
+  const mapsHref = details.location
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(details.location)}`
+    : undefined;
+
   return (
     <DashboardLayout>
       <Helmet>
-        <title>Create New Event | EveForce</title>
+        <title>{t("eventDetails.title")} | EveForce</title>
       </Helmet>
 
       <div className="page-header">
-        <h1>Create New Event</h1>
-        <p>Create event and configure multiple freelancer roles under a single event</p>
+        <h1>{t("eventDetails.title")}</h1>
+        <p>{t("eventDetails.subtitle")}</p>
       </div>
 
       <StepIndicator current={1} maxReached={1} />
 
       <div
         className="hero-banner"
-        style={{ backgroundImage: `url(${heroCrowd})` }}
+        style={{ backgroundImage: `url(${heroCoordinator})` }}
       >
         <div className="hero-banner__content">
           <span className="hero-banner__badge">
-            <GiftOutlined /> Included Organizer Benefit
+            <GiftOutlined /> {t("eventDetails.heroBadge")}
           </span>
-          <h2 className="hero-banner__title">On-site Event Coordinator</h2>
-          <p className="hero-banner__subtitle">Included – At No Extra Cost</p>
-          <p className="hero-banner__desc">
-            Every event includes a professional on-site coordinator who oversees workforce
-            operations, supports your team, and helps ensure smooth event execution from start
-            to finish.
-          </p>
+          <h2 className="hero-banner__title">{t("eventDetails.heroTitle")}</h2>
+          <p className="hero-banner__subtitle">{t("eventDetails.heroSubtitle")}</p>
+          <p className="hero-banner__desc">{t("eventDetails.heroDesc")}</p>
           <div className="hero-banner__features">
             <div className="hero-banner__feature">
-              <UsergroupAddOutlined /> On-site Workforce Supervision
+              <UsergroupAddOutlined /> {t("eventDetails.heroFeature1")}
             </div>
             <div className="hero-banner__feature">
-              <TeamOutlined /> Freelancer Coordination
+              <TeamOutlined /> {t("eventDetails.heroFeature2")}
             </div>
             <div className="hero-banner__feature">
-              <SearchOutlined /> Real-time issue resolution
+              <SearchOutlined /> {t("eventDetails.heroFeature3")}
             </div>
             <div className="hero-banner__feature">
-              <CustomerServiceOutlined /> Direct support throughout the event
+              <CustomerServiceOutlined /> {t("eventDetails.heroFeature4")}
             </div>
           </div>
         </div>
       </div>
 
       <div className="form-card">
-        <h2>Event Details</h2>
-        <p className="form-card__desc">These details will be shared across every role created for this event</p>
+        <h2>{t("eventDetails.sectionTitle")}</h2>
+        <p className="form-card__desc">{t("eventDetails.sectionDesc")}</p>
 
         <div className="form-row">
           <div>
-            <p className="form-label">Event Name</p>
+            <p className="form-label">{t("eventDetails.eventName")}</p>
             <Input
               size="large"
-              placeholder="Enter event name"
+              placeholder={t("eventDetails.eventNamePlaceholder") ?? undefined}
               value={details.eventName}
               onChange={(e) => setDetails({ eventName: e.target.value })}
             />
           </div>
           <div>
-            <p className="form-label">Category</p>
+            <p className="form-label">{t("eventDetails.category")}</p>
             <Select
               size="large"
-              placeholder="Select"
+              placeholder={t("eventDetails.select") ?? undefined}
               style={{ width: "100%" }}
               value={details.category || undefined}
               onChange={(val) => setDetails({ category: val })}
@@ -126,10 +129,10 @@ const EventDetails = () => {
 
         <div className="form-row">
           <div>
-            <p className="form-label">City</p>
+            <p className="form-label">{t("eventDetails.city")}</p>
             <Select
               size="large"
-              placeholder="Select"
+              placeholder={t("eventDetails.select") ?? undefined}
               style={{ width: "100%" }}
               value={details.city || undefined}
               onChange={(val) => setDetails({ city: val })}
@@ -137,20 +140,25 @@ const EventDetails = () => {
             />
           </div>
           <div>
-            <p className="form-label">Location</p>
+            <p className="form-label">{t("eventDetails.location")}</p>
             <Input
               size="large"
-              placeholder="Google maps link preferred"
+              placeholder={t("eventDetails.locationPlaceholder") ?? undefined}
               suffix={<EnvironmentOutlined style={{ color: "#98a2b3" }} />}
               value={details.location}
               onChange={(e) => setDetails({ location: e.target.value })}
             />
+            {mapsHref && (
+              <a className="map-link" href={mapsHref} target="_blank" rel="noreferrer">
+                <img src={mapPin} alt="" /> {t("common.viewOnMap")}
+              </a>
+            )}
           </div>
         </div>
 
         <div className="form-row">
           <div>
-            <p className="form-label">Start Date</p>
+            <p className="form-label">{t("eventDetails.startDate")}</p>
             <DatePicker
               size="large"
               style={{ width: "100%" }}
@@ -161,7 +169,7 @@ const EventDetails = () => {
             />
           </div>
           <div>
-            <p className="form-label">End Date</p>
+            <p className="form-label">{t("eventDetails.endDate")}</p>
             <DatePicker
               size="large"
               style={{ width: "100%" }}
@@ -175,35 +183,35 @@ const EventDetails = () => {
 
         <div className="form-row">
           <div>
-            <p className="form-label">Start Time</p>
+            <p className="form-label">{t("eventDetails.startTime")}</p>
             <Select
               size="large"
-              placeholder="Select"
+              placeholder={t("eventDetails.select") ?? undefined}
               style={{ width: "100%" }}
               value={details.startTime || undefined}
               onChange={(val) => setDetails({ startTime: val })}
-              options={TIME_OPTIONS.map((t) => ({ value: t, label: t }))}
+              options={TIME_OPTIONS.map((t2) => ({ value: t2, label: t2 }))}
             />
           </div>
           <div>
-            <p className="form-label">End Time</p>
+            <p className="form-label">{t("eventDetails.endTime")}</p>
             <Select
               size="large"
-              placeholder="Select"
+              placeholder={t("eventDetails.select") ?? undefined}
               style={{ width: "100%" }}
               value={details.endTime || undefined}
               onChange={(val) => setDetails({ endTime: val })}
-              options={TIME_OPTIONS.map((t) => ({ value: t, label: t }))}
+              options={TIME_OPTIONS.map((t2) => ({ value: t2, label: t2 }))}
             />
           </div>
         </div>
 
         <div style={{ marginBottom: 20 }}>
-          <p className="form-label">Language Proficiency (Select all that apply)</p>
+          <p className="form-label">{t("eventDetails.language")}</p>
           <Select
             mode="multiple"
             size="large"
-            placeholder="Select"
+            placeholder={t("eventDetails.select") ?? undefined}
             style={{ width: "100%" }}
             value={details.languages}
             onChange={(val) => setDetails({ languages: val })}
@@ -212,12 +220,12 @@ const EventDetails = () => {
         </div>
 
         <div>
-          <p className="form-label">Event Description</p>
+          <p className="form-label">{t("eventDetails.description")}</p>
           <TextArea
             rows={4}
             maxLength={500}
             showCount
-            placeholder="Describe your event, objectives and other important details....."
+            placeholder={t("eventDetails.descriptionPlaceholder") ?? undefined}
             value={details.description}
             onChange={(e) => setDetails({ description: e.target.value })}
           />
@@ -225,12 +233,12 @@ const EventDetails = () => {
       </div>
 
       <div className="form-card">
-        <h2>Listing Expiry</h2>
-        <p className="form-card__desc">Set the deadline when this listing expires and freelancers can no longer apply.</p>
+        <h2>{t("eventDetails.expiryTitle")}</h2>
+        <p className="form-card__desc">{t("eventDetails.expiryDesc")}</p>
 
         <div className="form-row" style={{ marginBottom: 16 }}>
           <div>
-            <p className="form-label">Expiration Date</p>
+            <p className="form-label">{t("eventDetails.expirationDate")}</p>
             <DatePicker
               size="large"
               style={{ width: "100%" }}
@@ -241,28 +249,27 @@ const EventDetails = () => {
             />
           </div>
           <div>
-            <p className="form-label">Expiration Time</p>
+            <p className="form-label">{t("eventDetails.expirationTime")}</p>
             <Select
               size="large"
-              placeholder="Select"
+              placeholder={t("eventDetails.select") ?? undefined}
               style={{ width: "100%" }}
               value={details.expirationTime || undefined}
               onChange={(val) => setDetails({ expirationTime: val })}
-              options={TIME_OPTIONS.map((t) => ({ value: t, label: t }))}
+              options={TIME_OPTIONS.map((t2) => ({ value: t2, label: t2 }))}
             />
           </div>
         </div>
 
         <div className="info-banner" style={{ marginBottom: 0 }}>
           <ExclamationCircleOutlined style={{ marginTop: 2 }} />
-          We recommend setting the listing to expire at least 24–48 hours before your event
-          starts to allow time for reviewing applications.
+          {t("eventDetails.expiryNotice")}
         </div>
       </div>
 
       <div className="form-card">
-        <h2>Requirements</h2>
-        <p className="form-card__desc">These apply to all freelancers for this event</p>
+        <h2>{t("eventDetails.requirementsTitle")}</h2>
+        <p className="form-card__desc">{t("eventDetails.requirementsDesc")}</p>
 
         <div className="checkbox-grid">
           {EVENT_REQUIREMENT_OPTIONS.map((req) => (
@@ -282,13 +289,13 @@ const EventDetails = () => {
           icon={<PlusOutlined />}
           style={{ marginTop: 18, borderStyle: "dashed" }}
         >
-          Add additional requirement
+          {t("eventDetails.addRequirement")}
         </Button>
       </div>
 
       <div className="form-card">
-        <h2>Event Perks</h2>
-        <p className="form-card__desc">Select all event perks that you'll be providing to the team</p>
+        <h2>{t("eventDetails.perksTitle")}</h2>
+        <p className="form-card__desc">{t("eventDetails.perksDesc")}</p>
 
         <div className="perk-grid">
           {EVENT_PERK_OPTIONS.map((perk) => (
@@ -309,14 +316,14 @@ const EventDetails = () => {
           icon={<PlusOutlined />}
           style={{ marginTop: 18, borderStyle: "dashed" }}
         >
-          Add additional perks
+          {t("eventDetails.addPerks")}
         </Button>
       </div>
 
       <div className="wizard-footer">
-        <Button size="large">Save as Draft</Button>
+        <Button size="large">{t("common.saveAsDraft")}</Button>
         <Button size="large" type="primary" onClick={handleContinue}>
-          Continue
+          {t("common.continue")}
         </Button>
       </div>
     </DashboardLayout>
