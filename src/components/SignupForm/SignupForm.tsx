@@ -8,10 +8,14 @@ import {
   GlobalOutlined,
   GoogleOutlined,
   LinkedinFilled,
+  PhoneOutlined,
+  CalendarOutlined,
+  ShopOutlined,
+  CheckCircleFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { createOrganizerAccount } from "../../api/auth";
-import type { CreateOrganizerAccountPayload } from "../../types/auth";
+import type { CreateOrganizerAccountPayload, OrganizerAccountType } from "../../types/auth";
 import "./SignupForm.css";
 
 interface FormValues extends CreateOrganizerAccountPayload {
@@ -221,15 +225,19 @@ const SignupForm = () => {
   const [form] = Form.useForm<FormValues>();
   const [submitting, setSubmitting] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [accountType, setAccountType] = useState<OrganizerAccountType>("organizer");
 
   const handleFinish = async (values: FormValues) => {
     setSubmitting(true);
     try {
       await createOrganizerAccount({
+        accountType,
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
         organizationName: values.organizationName,
+        contactNumber: values.contactNumber,
+        organizationWebsite: values.organizationWebsite,
         password: values.password,
         companyOrigin: values.companyOrigin,
       });
@@ -251,6 +259,34 @@ const SignupForm = () => {
         {t("signup.title")}
       </h1>
       <p className="signup-form__subtitle">{t("signup.subtitle")}</p>
+
+      <div className="account-type-grid">
+        <button
+          type="button"
+          className={`account-type-card${accountType === "organizer" ? " account-type-card--active" : ""}`}
+          onClick={() => setAccountType("organizer")}
+        >
+          {accountType === "organizer" && (
+            <CheckCircleFilled className="account-type-card__check" />
+          )}
+          <CalendarOutlined className="account-type-card__icon" />
+          <h3>{t("signup.accountTypeOrganizer")}</h3>
+          <p>{t("signup.accountTypeOrganizerDesc")}</p>
+        </button>
+
+        <button
+          type="button"
+          className={`account-type-card${accountType === "client" ? " account-type-card--active" : ""}`}
+          onClick={() => setAccountType("client")}
+        >
+          {accountType === "client" && (
+            <CheckCircleFilled className="account-type-card__check" />
+          )}
+          <ShopOutlined className="account-type-card__icon" />
+          <h3>{t("signup.accountTypeClient")}</h3>
+          <p>{t("signup.accountTypeClientDesc")}</p>
+        </button>
+      </div>
 
       <Form<FormValues>
         form={form}
@@ -306,17 +342,45 @@ const SignupForm = () => {
           />
         </Form.Item>
 
+        <div className="signup-form__row">
+          <Form.Item
+            name="organizationName"
+            label={t("signup.organizationName")}
+            rules={[{ required: true, message: t("signup.organizationNameRequired") ?? undefined }]}
+            className="signup-form__field"
+          >
+            <Input
+              size="large"
+              prefix={<UserOutlined className="signup-form__icon" />}
+              placeholder={t("signup.organizationNamePlaceholder") ?? undefined}
+              autoComplete="organization"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="contactNumber"
+            label={t("signup.contactNumber")}
+            rules={[{ required: true, message: t("signup.contactNumberRequired") ?? undefined }]}
+            className="signup-form__field"
+          >
+            <Input
+              size="large"
+              prefix={<PhoneOutlined className="signup-form__icon" />}
+              placeholder={t("signup.contactNumberPlaceholder") ?? undefined}
+              autoComplete="tel"
+            />
+          </Form.Item>
+        </div>
+
         <Form.Item
-          name="organizationName"
-          label={t("signup.organizationName")}
-          rules={[{ required: true, message: t("signup.organizationNameRequired") ?? undefined }]}
-          extra={t("signup.organizationNameExtra")}
+          name="organizationWebsite"
+          label={t("signup.organizationWebsite")}
         >
           <Input
             size="large"
-            prefix={<UserOutlined className="signup-form__icon" />}
-            placeholder={t("signup.organizationNamePlaceholder") ?? undefined}
-            autoComplete="organization"
+            prefix={<GlobalOutlined className="signup-form__icon" />}
+            placeholder={t("signup.organizationWebsitePlaceholder") ?? undefined}
+            autoComplete="url"
           />
         </Form.Item>
 

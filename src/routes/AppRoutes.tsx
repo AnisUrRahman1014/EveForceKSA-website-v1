@@ -8,7 +8,10 @@ import EventDetails from "../pages/CreateEvent/EventDetails";
 import RolesStaffing from "../pages/CreateEvent/RolesStaffing";
 import ReviewListing from "../pages/CreateEvent/ReviewListing";
 import PaymentPublish from "../pages/CreateEvent/PaymentPublish";
+import ProfileView from "../pages/Profile/ProfileView";
+import ProfileEdit from "../pages/Profile/ProfileEdit";
 import { EventFormProvider } from "../context/EventFormContext";
+import { OrganizationProfileProvider } from "../context/OrganizationProfileContext";
 
 // Wraps the 4-step "Create New Event" wizard in a single shared form
 // context instance so state persists as the organizer moves between steps.
@@ -16,6 +19,15 @@ const CreateEventWizard = () => (
   <EventFormProvider>
     <Outlet />
   </EventFormProvider>
+);
+
+// Wraps the profile view + edit pages in a single shared organization
+// profile context instance so edits made on /profile/edit are reflected
+// back on /profile.
+const ProfileSection = () => (
+  <OrganizationProfileProvider>
+    <Outlet />
+  </OrganizationProfileProvider>
 );
 
 const AppRoutes = () => {
@@ -34,6 +46,11 @@ const AppRoutes = () => {
         <Route path="/events/create/roles" element={<RolesStaffing />} />
         <Route path="/events/create/review" element={<ReviewListing />} />
         <Route path="/events/create/payment" element={<PaymentPublish />} />
+      </Route>
+
+      <Route element={<ProfileSection />}>
+        <Route path="/profile" element={<ProfileView />} />
+        <Route path="/profile/edit" element={<ProfileEdit />} />
       </Route>
 
       <Route
@@ -55,10 +72,6 @@ const AppRoutes = () => {
       <Route
         path="/analytics"
         element={<PlaceholderPage title={t("sidebar.analytics")} description={t("placeholders.analyticsDesc") ?? undefined} />}
-      />
-      <Route
-        path="/profile"
-        element={<PlaceholderPage title={t("sidebar.profile")} description={t("placeholders.profileDesc") ?? undefined} />}
       />
       <Route
         path="/settings"

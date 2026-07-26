@@ -99,9 +99,66 @@
   text-decoration: underline;
 }
 
+.account-type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.account-type-card {
+  position: relative;
+  text-align: left;
+  border: 1.5px solid #eef0f3;
+  border-radius: 12px;
+  background: #fff;
+  padding: 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.account-type-card:hover {
+  border-color: #93c5fd;
+}
+
+.account-type-card--active {
+  border-color: #2563eb;
+  background: #f8faff;
+}
+
+.account-type-card__icon {
+  font-size: 22px;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.account-type-card h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.account-type-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.account-type-card__check {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  color: #2563eb;
+  font-size: 18px;
+}
+
 @media (max-width: 640px) {
   .signup-form__row,
-  .signup-form__social {
+  .signup-form__social,
+  .account-type-grid {
     grid-template-columns: 1fr;
   }
 }
