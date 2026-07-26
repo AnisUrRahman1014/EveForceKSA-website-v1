@@ -1,3 +1,7 @@
+/* =========================
+   Page Header
+========================= */
+
 .page-header h1 {
   font-size: 28px;
   font-weight: 700;
@@ -11,11 +15,21 @@
   font-size: 15px;
 }
 
+
+/* =========================
+   Hero Banner
+========================= */
+
 .hero-banner {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(120deg, #050b24 0%, #0c1848 55%, #14225e 100%);
+  background: linear-gradient(
+    120deg,
+    #050b24 0%,
+    #0c1848 55%,
+    #14225e 100%
+  );
   padding: 32px 36px;
   color: #fff;
   margin-bottom: 32px;
@@ -27,7 +41,6 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(5, 11, 36, 0.92) 0%, rgba(5, 11, 36, 0.55) 60%, rgba(5, 11, 36, 0.85) 100%);
 }
 
 .hero-banner__content {
@@ -40,7 +53,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.15);
+  background: #1e6bff;
   border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 5px 12px;
   border-radius: 999px;
@@ -91,25 +104,33 @@
   font-size: 13px;
 }
 
+
+/* =========================
+   Form Card
+========================= */
+
 .form-card {
   background: #fff;
-  border: 1px solid #eef0f3;
-  border-radius: 14px;
-  padding: 28px 32px;
-  margin-bottom: 24px;
+  border: 1px solid #d9dce1;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
 
 .form-card h2 {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 4px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  margin: 0 0 2px;
   color: #101828;
 }
 
 .form-card > p.form-card__desc {
-  margin: 0 0 22px;
-  color: #667085;
-  font-size: 13.5px;
+  margin: 0 0 14px;
+  color: #98a2b3;
+  font-size: 11px;
+  line-height: 16px;
 }
 
 .form-row {
@@ -126,11 +147,52 @@
   margin: 0 0 6px;
 }
 
+
+/* =========================
+   Location Input
+========================= */
+
+.ant-input-affix-wrapper-lg {
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 10px !important;
+  height: 39px !important;
+  border: 1px solid #aeb4bd !important;
+}
+
+.ant-input-affix-wrapper-lg .ant-input {
+  padding-left: 14px !important;
+  padding-right: 12px !important;
+  font-size: 18px !important;
+}
+
+.ant-input-affix-wrapper-lg .ant-input-suffix {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: stretch !important;
+  border-left: 1px solid #aeb4bd;
+}
+
+.ant-input-affix-wrapper-lg .ant-input-suffix img {
+  display: block !important;
+  width: 60px !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
 .form-hint {
   font-size: 12.5px;
   color: #98a2b3;
   margin: 0;
 }
+
+
+/* =========================
+   Form Section Title
+========================= */
 
 .form-section-title {
   font-size: 15px;
@@ -139,54 +201,129 @@
   margin: 0 0 14px;
 }
 
+
+/* =========================
+   Requirements Checkbox Grid
+========================= */
+
 .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  column-gap: 28px;
+  row-gap: 10px;
+  margin-bottom: 14px;
 }
 
 .checkbox-grid .ant-checkbox-wrapper {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  line-height: 1.4;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #344054 !important;
+  font-size: 11px !important;
+  line-height: 16px !important;
+  white-space: nowrap;
 }
 
 .checkbox-grid .ant-checkbox {
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+}
+
+.checkbox-grid .ant-checkbox-inner {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 3px !important;
+  border-color: #98a2b3 !important;
 }
 
 .checkbox-grid .ant-checkbox + span {
-  padding-left: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #344054;
-  display: flex;
-  align-items: center;
-}
-.checkbox-grid .ant-checkbox-wrapper {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  column-gap: 10px;
-  align-items: center;
-  width: 100%;
-  margin: 0;
+  padding-left: 5px !important;
+  padding-right: 0 !important;
+  font-size: 14px !important;
+  line-height: 16px !important;
+  font-weight: 400 !important;
+  color: #344054 !important;
 }
 
-.checkbox-grid .ant-checkbox + span {
-  padding: 0;
+
+/* Checked Checkbox */
+
+.checkbox-grid
+  .ant-checkbox-checked
+  .ant-checkbox-inner {
+  background-color: #2f6df6 !important;
+  border-color: #2f6df6 !important;
 }
+
+
+/* Checkbox Tick */
+
+.checkbox-grid
+  .ant-checkbox-checked
+  .ant-checkbox-inner::after {
+  border-color: #fff !important;
+}
+
+
+/* =========================
+   Add Requirement Button
+========================= */
+
+.add-requirement-btn {
+  width: 345px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+
+  padding: 0 12px !important;
+  margin-top: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  border: 1px solid #d0d5dd !important;
+  border-radius: 7px !important;
+
+  background: #fff !important;
+  color: #344054 !important;
+
+  font-size: 11px !important;
+  font-weight: 400 !important;
+
+  box-shadow: none !important;
+}
+
+.add-requirement-btn:hover {
+  border-color: #98a2b3 !important;
+  color: #344054 !important;
+  background: #fff !important;
+}
+
+.add-requirement-btn .anticon {
+  font-size: 12px !important;
+  margin-right: 4px !important;
+}
+
+
+/* =========================
+   Perks
+========================= */
 
 .perk-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  column-gap: 28px;
+  row-gap: 10px;
+  margin-bottom: 14px;
 }
 
 .perk-chip {
   border: 1px solid #d0d5dd;
-  background: #fff;
+  background: #DBDCDF99;
   color: #344054;
   border-radius: 8px;
   padding: 10px 8px;
@@ -203,6 +340,56 @@
   color: #fff;
 }
 
+/* =========================
+   Add Perk Button
+========================= */
+
+.add-perk-btn {
+  width: 345px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+
+  padding: 0 12px !important;
+  margin-top: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  border: 1px solid #d0d5dd !important;
+  border-radius: 7px !important;
+
+  background: #fff !important;
+  color: #344054 !important;
+
+  font-size: 11px !important;
+  font-weight: 400 !important;
+
+  box-shadow: none !important;
+}
+
+
+/* Hover */
+
+.add-perk-btn:hover {
+  border-color: #98a2b3 !important;
+  color: #344054 !important;
+  background: #fff !important;
+}
+
+
+/* Plus Icon */
+
+.add-perk-btn .anticon {
+  font-size: 12px !important;
+  margin-right: 4px !important;
+}
+
+
+/* =========================
+   Wizard Footer
+========================= */
+
 .wizard-footer {
   display: flex;
   justify-content: flex-end;
@@ -210,7 +397,11 @@
   margin-top: 8px;
 }
 
-/* Role Builder */
+
+/* =========================
+   Role Builder
+========================= */
+
 .role-builder-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -302,7 +493,11 @@
   gap: 8px;
 }
 
-/* Stepper input (used in Add Role drawer) */
+
+/* =========================
+   Stepper Input
+========================= */
+
 .stepper-input {
   display: flex;
   align-items: center;
@@ -335,6 +530,11 @@
   font-weight: 600;
   font-size: 15px;
 }
+
+
+/* =========================
+   Schedule Days
+========================= */
 
 .schedule-days {
   display: grid;
@@ -374,6 +574,11 @@
   font-size: 12px;
   color: #667085;
 }
+
+
+/* =========================
+   Requirement List
+========================= */
 
 .requirement-list {
   display: flex;
@@ -422,7 +627,11 @@
   padding: 2px;
 }
 
-/* Review Listing */
+
+/* =========================
+   Review Listing
+========================= */
+
 .review-table {
   display: flex;
   flex-direction: column;
@@ -451,6 +660,11 @@
   text-align: right;
 }
 
+
+/* =========================
+   Section Header
+========================= */
+
 .section-head {
   display: flex;
   align-items: center;
@@ -460,7 +674,7 @@
 
 .section-head h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -472,17 +686,45 @@
   font-size: 16px;
 }
 
+/* =========================
+   Tags – 4 per row
+========================= */
+
 .tag-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 24px;          /* row-gap | column-gap */
 }
 
 .tag-grid__item {
   font-size: 14px;
   color: #344054;
-  min-width: 200px;
+  /* remove min-width so the grid controls the width */
 }
+
+/* Optional responsive */
+@media (max-width: 1100px) {
+  .tag-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tag-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tag-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   Perk Pills
+========================= */
 
 .perk-pill-grid {
   display: grid;
@@ -501,7 +743,11 @@
   font-size: 13.5px;
 }
 
-/* Payment */
+
+/* =========================
+   Payment
+========================= */
+
 .payroll-row {
   display: flex;
   align-items: center;
@@ -533,6 +779,11 @@
   color: #101828;
 }
 
+
+/* =========================
+   Hiring Mode
+========================= */
+
 .hiring-mode-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -541,8 +792,8 @@
 
 .hiring-card {
   border: 1.5px solid #eef0f3;
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 10px;
   cursor: pointer;
   position: relative;
   transition: border-color 0.15s ease;
@@ -582,8 +833,8 @@
 
 .hiring-card__body {
   display: flex;
-  gap: 14px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .hiring-card__icon {
@@ -615,25 +866,191 @@
 
 .hiring-card__features {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #d0d5dd;
+  margin-top: 14px;
+  padding-top: 16px;
+}
+
+.hiring-card__feature {
+  display: flex;
+  align-items: flex-start;
   gap: 10px;
-  border-top: 1px solid #f2f4f7;
-  padding-top: 14px;
+  padding: 0 16px;
+  min-height: 74px;
+  position: relative;
+}
+
+.hiring-card__feature:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  right: 0;
+  width: 1px;
+  background: #d0d5dd;
+}
+
+.hiring-card__feature-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hiring-card__feature-content {
+  flex: 1;
 }
 
 .hiring-card__feature-title {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #344054;
-  margin: 0 0 2px;
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #101828;
 }
 
 .hiring-card__feature-desc {
-  font-size: 11.5px;
-  color: #98a2b3;
   margin: 0;
+  font-size: 11px;
   line-height: 1.4;
+  color: #667085;
 }
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1024px) {
+  .hiring-mode-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-card__features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hiring-card__feature {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .hiring-card__feature-title {
+    font-size: 12px;
+  }
+
+  .hiring-card__feature-desc {
+    font-size: 10px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+  .hiring-mode-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hiring-card {
+    padding: 14px;
+  }
+
+  .hiring-card__body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hiring-card__features {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hiring-card__feature {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .hiring-card__feature:not(:last-child)::after {
+    display: none;
+  }
+
+  .hiring-card__feature:not(:last-child) {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e4e7ec;
+  }
+
+  .hiring-card__feature-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hiring-card__feature-title {
+    font-size: 13px;
+  }
+
+  .hiring-card__feature-desc {
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 480px) {
+  .hiring-card {
+    padding: 12px;
+  }
+
+  .hiring-card__top {
+    font-size: 12px;
+  }
+
+  .hiring-card__body h3 {
+    font-size: 18px;
+  }
+
+  .hiring-card__body p {
+    font-size: 13px;
+  }
+
+  .hiring-card__feature {
+    gap: 10px;
+  }
+
+  .hiring-card__feature-title {
+    font-size: 13px;
+  }
+
+  .hiring-card__feature-desc {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+}
+.hiring-card {
+  border: 1.5px solid #d0d5dd; /* was #eef0f3 */
+}
+
+.hiring-card--active {
+  border: 2px solid #2563eb;
+}
+.hiring-card__features {
+  border-top: 1px solid #d0d5dd; /* was #f2f4f7 */
+}
+.hiring-card__features > div {
+  padding: 0 10px;
+}
+
+.hiring-card__features > div:not(:last-child) {
+  border-right: 1px solid #d0d5dd;
+}
+
+/* =========================
+   Total Payment
+========================= */
 
 .total-payment-row {
   display: flex;
@@ -654,6 +1071,11 @@
   color: #2563eb;
 }
 
+
+/* =========================
+   Info Banner
+========================= */
+
 .info-banner {
   display: flex;
   gap: 10px;
@@ -668,6 +1090,11 @@
   margin-bottom: 24px;
 }
 
+
+/* =========================
+   Responsive
+========================= */
+
 @media (max-width: 1100px) {
   .form-row,
   .checkbox-grid,
@@ -676,5 +1103,30 @@
   .perk-pill-grid,
   .hiring-mode-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .checkbox-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .form-card {
+    padding: 18px;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-requirement-btn {
+    width: 100% !important;
+  }
+
+  .form-row,
+  .hiring-mode-grid {
+    grid-template-columns: 1fr;
   }
 }

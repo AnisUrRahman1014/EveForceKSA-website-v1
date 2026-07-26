@@ -4,9 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { Button, Input, message } from "antd";
 import {
-  UserOutlined,
   StarOutlined,
-  ThunderboltOutlined,
   SafetyOutlined,
   ExclamationCircleOutlined,
   CheckOutlined,
@@ -17,7 +15,12 @@ import StepIndicator from "../../components/CreateEvent/StepIndicator";
 import { useEventForm } from "../../context/EventFormContext";
 import type { HiringMode } from "../../context/EventFormContext";
 import "../../components/CreateEvent/create-event.css";
-
+import PP from "../../assets/Profile-payment.svg";
+import HR from "../../assets/Hiring-payment.svg";
+import vector from "../../assets/Vector.svg";
+import userLogo from "../../assets/User-Logo.svg";
+import Faster from "../../assets/Faster.svg";
+import Replace from "../../assets/Replace.svg";
 const SERVICE_FEE_FLAT = 200;
 const PLATFORM_FEE_RATE = 0.1;
 const VAT_RATE = 0.15;
@@ -119,7 +122,7 @@ const PaymentPublish = () => {
             </div>
             <div className="hiring-card__body">
               <span className="hiring-card__icon">
-                <UserOutlined />
+              <img src={PP} alt="Profile" width={40} height={40} />
               </span>
               <div>
                 <h3>{t("payment.selfTitle")}</h3>
@@ -147,9 +150,15 @@ const PaymentPublish = () => {
             onClick={() => selectMode("eveforce")}
           >
             <div className="hiring-card__top">
-              <span>
-                <TagOutlined /> {t("payment.additionalServiceFee")}: {SERVICE_FEE_FLAT}
-              </span>
+            <span className="hiring-card__fee">
+              <TagOutlined /> {t("payment.additionalServiceFee")}:{" "}
+              <img
+                src={vector}
+                alt=""
+                style={{ width: 14, height: 14, margin: "0 2px 0 4px", verticalAlign: "middle" }}
+              />
+              <span style={{ color: "#2563eb", fontWeight: 600 }}>{SERVICE_FEE_FLAT}</span>
+            </span>
               <span
                 style={{
                   background: "#2563eb",
@@ -165,27 +174,62 @@ const PaymentPublish = () => {
             </div>
             <div className="hiring-card__body">
               <span className="hiring-card__icon">
-                <ThunderboltOutlined />
+                <img src={HR} alt="Profile" width={40} height={40} />
               </span>
               <div>
                 <h3>{t("payment.eveforceTitle")}</h3>
                 <p>{t("payment.eveforceDesc")}</p>
               </div>
             </div>
-            <div className="hiring-card__features">
-              <div>
-                <p className="hiring-card__feature-title">{t("payment.eveforceFeature1Title")}</p>
-                <p className="hiring-card__feature-desc">{t("payment.eveforceFeature1Desc")}</p>
-              </div>
-              <div>
-                <p className="hiring-card__feature-title">{t("payment.eveforceFeature2Title")}</p>
-                <p className="hiring-card__feature-desc">{t("payment.eveforceFeature2Desc")}</p>
-              </div>
-              <div>
-                <p className="hiring-card__feature-title">{t("payment.eveforceFeature3Title")}</p>
-                <p className="hiring-card__feature-desc">{t("payment.eveforceFeature3Desc")}</p>
+          <div className="hiring-card__features">
+            <div className="hiring-card__feature">
+              <img
+                src={userLogo}
+                alt=""
+                className="hiring-card__feature-icon"
+              />
+              <div className="hiring-card__feature-content">
+                <p className="hiring-card__feature-title">
+                  {t("payment.eveforceFeature1Title")}
+                </p>
+                <p className="hiring-card__feature-desc">
+                  {t("payment.eveforceFeature1Desc")}
+                </p>
               </div>
             </div>
+
+            <div className="hiring-card__feature">
+              <img
+                src={Faster}
+                alt=""
+                className="hiring-card__feature-icon"
+              />
+              <div className="hiring-card__feature-content">
+                <p className="hiring-card__feature-title">
+                  {t("payment.eveforceFeature2Title")}
+                </p>
+                <p className="hiring-card__feature-desc">
+                  {t("payment.eveforceFeature2Desc")}
+                </p>
+              </div>
+            </div>
+
+            <div className="hiring-card__feature">
+              <img
+                src={Replace}
+                alt=""
+                className="hiring-card__feature-icon"
+              />
+              <div className="hiring-card__feature-content">
+                <p className="hiring-card__feature-title">
+                  {t("payment.eveforceFeature3Title")}
+                </p>
+                <p className="hiring-card__feature-desc">
+                  {t("payment.eveforceFeature3Desc")}
+                </p>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>

@@ -4,11 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Input, Select, DatePicker, Checkbox, Button } from "antd";
 import {
   GiftOutlined,
-  TeamOutlined,
-  UsergroupAddOutlined,
-  SearchOutlined,
-  CustomerServiceOutlined,
-  EnvironmentOutlined,
   ExclamationCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
@@ -24,9 +19,13 @@ import {
   LANGUAGE_OPTIONS,
   TIME_OPTIONS,
 } from "../../types/event";
-import heroCrowd from "../../assets/images/hero-crowd.jpg";
+import dashBoardCrowd from "../../assets/images/Dashboard-image.png";
 import "../../components/CreateEvent/create-event.css";
-
+import workForce from "..//..//assets/WorkForce.svg";
+import Freelance from "..//..//assets/Freelance.svg";
+import realTime from "..//..//assets/Realtime.svg";
+import Support from "..//..//assets/Support.svg";
+import locationIcon from "..//..//assets/images/Location.png";
 const { TextArea } = Input;
 
 const EventDetails = () => {
@@ -69,7 +68,7 @@ const EventDetails = () => {
 
       <div
         className="hero-banner"
-        style={{ backgroundImage: `url(${heroCrowd})` }}
+        style={{ backgroundImage: `url(${dashBoardCrowd})` }}
       >
         <div className="hero-banner__content">
           <span className="hero-banner__badge">
@@ -79,17 +78,21 @@ const EventDetails = () => {
           <p className="hero-banner__subtitle">{t("eventDetails.heroSubtitle")}</p>
           <p className="hero-banner__desc">{t("eventDetails.heroDesc")}</p>
           <div className="hero-banner__features">
+          <div className="hero-banner__feature">
+            <img src={workForce} alt="" className="hero-banner__feature-icon" />
+            {t("eventDetails.heroFeature1")}
+          </div>
             <div className="hero-banner__feature">
-              <UsergroupAddOutlined /> {t("eventDetails.heroFeature1")}
+              <img src={Freelance} alt="" className="hero-banner__feature-icon" />
+              {t("eventDetails.heroFeature2")}
             </div>
             <div className="hero-banner__feature">
-              <TeamOutlined /> {t("eventDetails.heroFeature2")}
+              <img src={realTime} alt="" className="hero-banner__feature-icon" />
+              {t("eventDetails.heroFeature3")}
             </div>
             <div className="hero-banner__feature">
-              <SearchOutlined /> {t("eventDetails.heroFeature3")}
-            </div>
-            <div className="hero-banner__feature">
-              <CustomerServiceOutlined /> {t("eventDetails.heroFeature4")}
+              <img src={Support} alt="" className="hero-banner__feature-icon" />
+              {t("eventDetails.heroFeature4")}
             </div>
           </div>
         </div>
@@ -136,12 +139,20 @@ const EventDetails = () => {
           </div>
           <div>
             <p className="form-label">{t("eventDetails.location")}</p>
+
             <Input
               size="large"
               placeholder={t("eventDetails.locationPlaceholder") ?? undefined}
-              suffix={<EnvironmentOutlined style={{ color: "#98a2b3" }} />}
+              suffix={
+                <img
+                  src={locationIcon}
+                  alt="Location"
+                />
+              }
               value={details.location}
-              onChange={(e) => setDetails({ location: e.target.value })}
+              onChange={(e) =>
+                setDetails({ location: e.target.value })
+              }
             />
           </div>
         </div>
@@ -196,7 +207,7 @@ const EventDetails = () => {
           </div>
         </div>
 
-        <div style={{ marginBottom: 20 }}>
+        <div style={{ marginBottom: 0 }}>
           <p className="form-label">{t("eventDetails.language")}</p>
           <Select
             mode="multiple"
@@ -259,7 +270,10 @@ const EventDetails = () => {
 
       <div className="form-card">
         <h2>{t("eventDetails.requirementsTitle")}</h2>
-        <p className="form-card__desc">{t("eventDetails.requirementsDesc")}</p>
+
+        <p className="form-card__desc">
+          {t("eventDetails.requirementsDesc")}
+        </p>
 
         <div className="checkbox-grid">
           {EVENT_REQUIREMENT_OPTIONS.map((req) => (
@@ -274,10 +288,9 @@ const EventDetails = () => {
         </div>
 
         <Button
-          block
-          size="large"
+          size="middle"
           icon={<PlusOutlined />}
-          style={{ marginTop: 18, borderStyle: "dashed" }}
+          className="add-requirement-btn"
         >
           {t("eventDetails.addRequirement")}
         </Button>
@@ -285,14 +298,21 @@ const EventDetails = () => {
 
       <div className="form-card">
         <h2>{t("eventDetails.perksTitle")}</h2>
-        <p className="form-card__desc">{t("eventDetails.perksDesc")}</p>
+
+        <p className="form-card__desc">
+          {t("eventDetails.perksDesc")}
+        </p>
 
         <div className="perk-grid">
           {EVENT_PERK_OPTIONS.map((perk) => (
             <button
               key={perk}
               type="button"
-              className={`perk-chip${details.perks.includes(perk) ? " perk-chip--active" : ""}`}
+              className={`perk-chip${
+                details.perks.includes(perk)
+                  ? " perk-chip--active"
+                  : ""
+              }`}
               onClick={() => togglePerk(perk)}
             >
               {perk}
@@ -301,10 +321,9 @@ const EventDetails = () => {
         </div>
 
         <Button
-          block
-          size="large"
+          size="middle"
           icon={<PlusOutlined />}
-          style={{ marginTop: 18, borderStyle: "dashed" }}
+          className="add-perk-btn"
         >
           {t("eventDetails.addPerks")}
         </Button>
