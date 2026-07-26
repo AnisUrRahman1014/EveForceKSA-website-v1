@@ -267,7 +267,12 @@ const ProfileView = () => {
                     <span className="reviews-summary__bar-track">
                       <span
                         className="reviews-summary__bar-fill"
-                        style={{ width: `${(row.count / totalReviews) * 100}%` }}
+                        style={{
+                          width:
+                            row.count > 0
+                              ? `${Math.max((row.count / totalReviews) * 100, 2)}%`
+                              : "0%",
+                        }}
                       />
                     </span>
                     <span>{row.count}</span>
