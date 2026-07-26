@@ -1,6 +1,6 @@
 .signup-form {
   width: 100%;
-  max-width: 620px;
+  max-width: 860px;
 }
 
 .signup-form__title {
@@ -12,14 +12,14 @@
 
 .signup-form__subtitle {
   font-size: 15px;
-  color: #667085;
+  color: #181819;
   margin: 0 0 32px;
 }
 
 .signup-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 10px;
 }
 
 .signup-form__field {
@@ -27,7 +27,8 @@
 }
 
 .signup-form__icon {
-  color: #98a2b3;
+  color: #61656e;
+  margin-left: 10px;
 }
 
 .signup-form__submit {
@@ -161,4 +162,15 @@
   .account-type-grid {
     grid-template-columns: 1fr;
   }
+}
+.ant-input-affix-wrapper .ant-input-suffix {
+  border-left: none !important;
+  margin-right: 10px !important;
+}
+
+.ant-input-password-icon {
+  border-left: none !important;
+}
+.ant-input-password-icon {
+  margin-right: 10px;
 }

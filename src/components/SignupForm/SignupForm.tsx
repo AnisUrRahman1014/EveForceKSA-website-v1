@@ -9,15 +9,14 @@ import {
   GoogleOutlined,
   LinkedinFilled,
   PhoneOutlined,
-  CalendarOutlined,
-  ShopOutlined,
   CheckCircleFilled,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { createOrganizerAccount } from "../../api/auth";
 import type { CreateOrganizerAccountPayload, OrganizerAccountType } from "../../types/auth";
 import "./SignupForm.css";
-
+import eventOrgnizer from "../../assets/Event-Org.svg"
+import client from "../../assets/Client-Company.svg"
 interface FormValues extends CreateOrganizerAccountPayload {
   confirmPassword: string;
   agree: boolean;
@@ -269,7 +268,7 @@ const SignupForm = () => {
           {accountType === "organizer" && (
             <CheckCircleFilled className="account-type-card__check" />
           )}
-          <CalendarOutlined className="account-type-card__icon" />
+          <img alt="Event" src={eventOrgnizer} height={30} width={30}/>
           <h3>{t("signup.accountTypeOrganizer")}</h3>
           <p>{t("signup.accountTypeOrganizerDesc")}</p>
         </button>
@@ -282,7 +281,7 @@ const SignupForm = () => {
           {accountType === "client" && (
             <CheckCircleFilled className="account-type-card__check" />
           )}
-          <ShopOutlined className="account-type-card__icon" />
+          <img alt="Client" src={client} width={30} height={30}/>
           <h3>{t("signup.accountTypeClient")}</h3>
           <p>{t("signup.accountTypeClientDesc")}</p>
         </button>
