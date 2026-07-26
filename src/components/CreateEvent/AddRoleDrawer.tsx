@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Drawer, Select, Button, Dropdown } from "antd";
 import type { MenuProps } from "antd";
+import { useTranslation } from "react-i18next";
 import {
   MinusOutlined,
   PlusOutlined,
@@ -37,6 +38,7 @@ const emptyRole = (): EventRole => ({
 });
 
 const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProps) => {
+  const { t } = useTranslation();
   const [role, setRole] = useState<EventRole>(emptyRole());
   const [reqModalOpen, setReqModalOpen] = useState(false);
 
@@ -72,13 +74,13 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
   };
 
   const requirementMenu = (id: string): MenuProps["items"] => [
-    { key: "remove", label: "Remove", danger: true, onClick: () => removeRequirement(id) },
+    { key: "remove", label: t("common.remove"), danger: true, onClick: () => removeRequirement(id) },
   ];
 
   return (
     <>
       <Drawer
-        title="Add Role"
+        title={t("addRole.title")}
         open={open}
         onClose={onClose}
         width={460}
@@ -86,20 +88,20 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
         footer={
           <div style={{ display: "flex", gap: 12 }}>
             <Button block size="large" onClick={onClose}>
-              Cancel
+              {t("common.cancel")}
             </Button>
             <Button block size="large" type="primary" onClick={handleSave} disabled={!role.roleType}>
-              Add
+              {t("common.add")}
             </Button>
           </div>
         }
       >
-        <p className="form-section-title">1. Role Details</p>
+        <p className="form-section-title">{t("addRole.roleDetails")}</p>
 
         <div style={{ marginBottom: 20 }}>
-          <p className="form-label">Role Type</p>
+          <p className="form-label">{t("addRole.roleType")}</p>
           <Select
-            placeholder="Select"
+            placeholder={t("addRole.select") ?? undefined}
             size="large"
             style={{ width: "100%" }}
             showSearch
@@ -116,7 +118,7 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
 
         <div style={{ display: "flex", gap: 16, marginBottom: 20 }}>
           <div style={{ flex: 1 }}>
-            <p className="form-label">No. of staff needed</p>
+            <p className="form-label">{t("addRole.staffNeeded")}</p>
             <div className="stepper-input">
               <button
                 type="button"
@@ -136,7 +138,7 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
             </div>
           </div>
           <div style={{ flex: 1 }}>
-            <p className="form-label">Rate/ day (SAR)</p>
+            <p className="form-label">{t("addRole.ratePerDay")}</p>
             <div className="stepper-input">
               <button
                 type="button"
@@ -159,9 +161,9 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
 
         <div style={{ marginBottom: 12 }}>
           <p className="form-label" style={{ marginBottom: 2 }}>
-            Schedule
+            {t("addRole.schedule")}
           </p>
-          <p className="form-hint">Choose any available days</p>
+          <p className="form-hint">{t("addRole.scheduleHint")}</p>
         </div>
         <div className="schedule-days" style={{ marginBottom: 20 }}>
           {SCHEDULE_DAYS.map((day) => (
@@ -180,32 +182,32 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
 
         <div style={{ display: "flex", gap: 16, marginBottom: 24 }}>
           <div style={{ flex: 1 }}>
-            <p className="form-label">Start Time</p>
+            <p className="form-label">{t("addRole.startTime")}</p>
             <Select
               size="large"
               style={{ width: "100%" }}
               value={role.startTime}
               suffixIcon={<ClockCircleOutlined />}
               onChange={(val) => setRole((prev) => ({ ...prev, startTime: val }))}
-              options={TIME_OPTIONS.map((t) => ({ value: t, label: t }))}
+              options={TIME_OPTIONS.map((time) => ({ value: time, label: time }))}
             />
           </div>
           <div style={{ flex: 1 }}>
-            <p className="form-label">End Time</p>
+            <p className="form-label">{t("addRole.endTime")}</p>
             <Select
               size="large"
               style={{ width: "100%" }}
               value={role.endTime}
               suffixIcon={<ClockCircleOutlined />}
               onChange={(val) => setRole((prev) => ({ ...prev, endTime: val }))}
-              options={TIME_OPTIONS.map((t) => ({ value: t, label: t }))}
+              options={TIME_OPTIONS.map((time) => ({ value: time, label: time }))}
             />
           </div>
         </div>
 
-        <p className="form-section-title">2. Specific Requirements</p>
+        <p className="form-section-title">{t("addRole.specificRequirements")}</p>
         <p className="form-hint" style={{ marginBottom: 12 }}>
-          Add requirement for this role
+          {t("addRole.specificRequirementsHint")}
         </p>
 
         <Button
@@ -215,7 +217,7 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
           onClick={() => setReqModalOpen(true)}
           style={{ marginBottom: 16 }}
         >
-          Add Requirement
+          {t("addRole.addRequirement")}
         </Button>
 
         {role.requirements.length > 0 && (
@@ -237,7 +239,7 @@ const AddRoleDrawer = ({ open, onClose, onSave, editingRole }: AddRoleDrawerProp
               </div>
             ))}
             <p className="form-hint" style={{ marginTop: 8 }}>
-              Drag to reorder requirements
+              {t("addRole.dragToReorder")}
             </p>
           </div>
         )}

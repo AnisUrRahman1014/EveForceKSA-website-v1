@@ -18,16 +18,23 @@
   overflow-y: auto;
 }
 
+.dashboard-sidebar__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 4px 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eef0f3;
+}
+
 .dashboard-sidebar__logo {
   display: flex;
   align-items: center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 12px 20px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #eef0f3;
-  width: 100%;
+  padding: 0;
 }
 
 .dashboard-sidebar__nav ul {

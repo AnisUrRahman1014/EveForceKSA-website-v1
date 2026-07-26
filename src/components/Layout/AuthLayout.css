@@ -45,10 +45,17 @@
   height: 100%;
 }
 
+.auth-layout__brand-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
 .auth-layout__logo {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 40px;
   line-height: 0;
 }
 

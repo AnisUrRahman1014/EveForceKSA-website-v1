@@ -1,18 +1,19 @@
 import { RightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./StepIndicator.css";
 
 export interface WizardStep {
   index: number;
-  label: string;
+  labelKey: string;
   path: string;
 }
 
 export const WIZARD_STEPS: WizardStep[] = [
-  { index: 1, label: "Event Details", path: "/events/create/details" },
-  { index: 2, label: "Roles & Staffing", path: "/events/create/roles" },
-  { index: 3, label: "Review Listing", path: "/events/create/review" },
-  { index: 4, label: "Pay & Publish", path: "/events/create/payment" },
+  { index: 1, labelKey: "steps.eventDetails", path: "/events/create/details" },
+  { index: 2, labelKey: "steps.rolesStaffing", path: "/events/create/roles" },
+  { index: 3, labelKey: "steps.reviewListing", path: "/events/create/review" },
+  { index: 4, labelKey: "steps.payAndPublish", path: "/events/create/payment" },
 ];
 
 interface StepIndicatorProps {
@@ -22,6 +23,8 @@ interface StepIndicatorProps {
 
 const StepIndicator = ({ current, maxReached }: StepIndicatorProps) => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir() === "rtl";
 
   return (
     <div className="step-indicator">
@@ -50,11 +53,14 @@ const StepIndicator = ({ current, maxReached }: StepIndicatorProps) => {
                   isActive ? " step-indicator__label--active" : isDone ? " step-indicator__label--done" : ""
                 }`}
               >
-                {step.label}
+                {t(step.labelKey)}
               </span>
             </button>
             {idx < WIZARD_STEPS.length - 1 && (
-              <RightOutlined className="step-indicator__chevron" />
+              <RightOutlined
+                className="step-indicator__chevron"
+                style={isRtl ? { transform: "rotate(180deg)" } : undefined}
+              />
             )}
           </div>
         );

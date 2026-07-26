@@ -1,9 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../components/Layout/AuthLayout";
 import SignupForm from "../components/SignupForm/SignupForm";
 
 const CreateOrganizerAccount = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
@@ -35,7 +38,7 @@ const CreateOrganizerAccount = () => {
       <AuthLayout
         footerLink={
           <>
-            Already have an account? <Link to="/sign-in">Sign In</Link>
+            {t("auth.haveAccount")} <Link to="/sign-in">{t("auth.signIn")}</Link>
           </>
         }
       >

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Select, Input, Button } from "antd";
+import { useTranslation } from "react-i18next";
 import { REQUIREMENT_TYPES } from "../../types/event";
 import type { RoleRequirement } from "../../types/event";
 
@@ -12,6 +13,7 @@ interface AddRequirementModalProps {
 }
 
 const AddRequirementModal = ({ open, onClose, onAdd }: AddRequirementModalProps) => {
+  const { t } = useTranslation();
   const [type, setType] = useState<string | undefined>();
   const [description, setDescription] = useState("");
 
@@ -33,7 +35,7 @@ const AddRequirementModal = ({ open, onClose, onAdd }: AddRequirementModalProps)
 
   return (
     <Modal
-      title="Add Requirement"
+      title={t("addRequirement.title")}
       open={open}
       onCancel={handleClose}
       footer={null}
@@ -42,21 +44,21 @@ const AddRequirementModal = ({ open, onClose, onAdd }: AddRequirementModalProps)
       zIndex={1200}
     >
       <div style={{ marginBottom: 20 }}>
-        <p className="form-label">Requirement Type</p>
+        <p className="form-label">{t("addRequirement.type")}</p>
         <Select
-          placeholder="Choose requirement type"
+          placeholder={t("addRequirement.typePlaceholder") ?? undefined}
           style={{ width: "100%" }}
           size="large"
           value={type}
           onChange={setType}
-          options={REQUIREMENT_TYPES.map((t) => ({ value: t, label: t }))}
+          options={REQUIREMENT_TYPES.map((rt) => ({ value: rt, label: rt }))}
         />
       </div>
 
       <div style={{ marginBottom: 24 }}>
-        <p className="form-label">Description</p>
+        <p className="form-label">{t("addRequirement.description")}</p>
         <TextArea
-          placeholder="Add specific instructions for this requirement..."
+          placeholder={t("addRequirement.descriptionPlaceholder") ?? undefined}
           maxLength={150}
           showCount
           rows={4}
@@ -67,10 +69,10 @@ const AddRequirementModal = ({ open, onClose, onAdd }: AddRequirementModalProps)
 
       <div style={{ display: "flex", gap: 12 }}>
         <Button block size="large" onClick={handleClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button block size="large" type="primary" onClick={handleAdd} disabled={!type}>
-          Add
+          {t("common.add")}
         </Button>
       </div>
     </Modal>
