@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,8 @@ import {
   BarChartOutlined,
   UserOutlined,
   SettingOutlined,
+  MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { Badge } from "antd";
 import dashboardLogo from "../../assets/DashboardLogo.svg";
@@ -26,6 +29,9 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const closeMobile = () => setMobileOpen(false);
 
   const mainNav = [{ to: "/dashboard", label: t("sidebar.dashboard"), icon: <AppstoreOutlined /> }];
 
@@ -44,13 +50,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <div className="dashboard-layout">
-      <aside className="dashboard-sidebar">
+      <button
+        type="button"
+        className="dashboard-mobile-toggle"
+        aria-label="Toggle navigation"
+        onClick={() => setMobileOpen((v) => !v)}
+      >
+        {mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
+      </button>
+
+      {mobileOpen && <div className="dashboard-sidebar__overlay" onClick={closeMobile} />}
+
+      <aside className={`dashboard-sidebar${mobileOpen ? " dashboard-sidebar--open" : ""}`}>
         <div>
           <div className="dashboard-sidebar__top">
             <button
               type="button"
               className="dashboard-sidebar__logo"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => {
+                navigate("/dashboard");
+                closeMobile();
+              }}
             >
               <img
                 src={dashboardLogo}
@@ -68,6 +88,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
+                    onClick={closeMobile}
                     className={({ isActive }) =>
                       `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
                     }
@@ -81,6 +102,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <li>
                 <NavLink
                   to="/events/create/details"
+                  onClick={closeMobile}
                   className={({ isActive }) =>
                     `dashboard-sidebar__cta${isActive ? " dashboard-sidebar__cta--active" : ""}`
                   }
@@ -96,6 +118,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
+                    onClick={closeMobile}
                     className={({ isActive }) =>
                       `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
                     }
@@ -116,6 +139,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
+                    onClick={closeMobile}
                     className={({ isActive }) =>
                       `dashboard-sidebar__link${isActive ? " dashboard-sidebar__link--active" : ""}`
                     }

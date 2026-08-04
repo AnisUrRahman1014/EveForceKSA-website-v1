@@ -492,3 +492,45 @@
     gap: 20px;
   }
 }
+
+@media (max-width: 480px) {
+  .profile-header__name {
+    font-size: 21px;
+  }
+
+  .profile-header__tagline {
+    font-size: 14px;
+  }
+
+  .profile-header__logo {
+    width: 72px;
+    height: 72px;
+    border-width: 3px;
+  }
+
+  .profile-tabs {
+    gap: 20px;
+  }
+
+  .review-card {
+    padding: 16px;
+  }
+
+  .reviews-summary__score-num {
+    font-size: 32px;
+  }
+
+  .reviews-summary__bar-row {
+    grid-template-columns: 46px 1fr 30px;
+    font-size: 12px;
+  }
+
+  .upload-box {
+    min-height: 120px;
+  }
+
+  .upload-box__preview-logo,
+  .upload-box__preview-cover {
+    min-height: 120px;
+  }
+}

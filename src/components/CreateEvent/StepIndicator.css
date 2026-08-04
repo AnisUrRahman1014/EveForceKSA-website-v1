@@ -63,3 +63,34 @@
   color: #d0d5dd;
   font-size: 12px;
 }
+
+@media (max-width: 550px) {
+  .step-indicator {
+    gap: 8px 10px;
+    margin: 20px 0 24px;
+  }
+
+  .step-indicator__item {
+    gap: 8px;
+  }
+
+  .step-indicator__label {
+    font-size: 12.5px;
+  }
+
+  .step-indicator__circle {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .step-indicator__label {
+    display: none;
+  }
+
+  .step-indicator__label--active {
+    display: inline;
+  }
+}

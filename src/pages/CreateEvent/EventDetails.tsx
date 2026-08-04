@@ -19,7 +19,7 @@ import {
   LANGUAGE_OPTIONS,
   TIME_OPTIONS,
 } from "../../types/event";
-import dashBoardCrowd from "../../assets/images/Dashboard-image.png";
+import dashBoardCrowd from "../../assets/images/Dashboard-image.jpg";
 import "../../components/CreateEvent/create-event.css";
 import workForce from "..//..//assets/WorkForce.svg";
 import Freelance from "..//..//assets/Freelance.svg";
