@@ -15,14 +15,8 @@
   inset-inline-start: 0;
   width: 260px;
   height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow-y: hidden;
   z-index: 30;
-}
-
-.dashboard-sidebar::-webkit-scrollbar {
-  display: none;
 }
 
 .dashboard-content {
