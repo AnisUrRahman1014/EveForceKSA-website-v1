@@ -1,7 +1,5 @@
 .dashboard-layout {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 260px 1fr;
   background: #f5f6f8;
 }
 
@@ -12,10 +10,22 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 24px 16px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  inset-inline-start: 0;
+  width: 260px;
   height: 100vh;
   overflow-y: auto;
+  z-index: 30;
+}
+
+.dashboard-content {
+  margin-inline-start: 260px;
+}
+
+[dir="rtl"] .dashboard-sidebar {
+  border-right: none;
+  border-left: 1px solid #eef0f3;
 }
 
 .dashboard-sidebar__top {
@@ -175,8 +185,8 @@
 }
 
 @media (max-width: 900px) {
-  .dashboard-layout {
-    grid-template-columns: 1fr;
+  .dashboard-content {
+    margin-inline-start: 0;
   }
 
   .dashboard-mobile-toggle {
